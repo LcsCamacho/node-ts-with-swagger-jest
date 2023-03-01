@@ -1,18 +1,14 @@
 //imports
 import express from 'express'
+import cors from 'cors'
+import { routerExample } from './routes/router';
 
 //app
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(routerExample)
 
-//get
-app.get('/', (req, res) => {
-    return res.json({message: 'Hello World'})
-});
-
-app.get('/users', (req, res) => {
-    let params = req.query;
-    return res.send(params)
-});
 
 //teste
 app.listen(3000, () => {

@@ -1,5 +1,8 @@
+import { routerPrivate } from "./private";
+import { routerPublic } from "./public";
 import { Router } from "express";
 
-export const routerExample = Router();
+export const router = Router();
 
-
+router.use(routerPublic);
+router.use(routerPrivate);

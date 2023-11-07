@@ -110,6 +110,9 @@
               }
             }
           },
+          "400": {
+            "description": "Id is required"
+          },
           "401": {
             "description": "Não autorizado"
           },
@@ -145,6 +148,9 @@
           "200": {
             "description": "Success"
           },
+          "400": {
+            "description": "Id is required"
+          },
           "401": {
             "description": "Não autorizado"
           },
@@ -179,6 +185,9 @@
         "responses": {
           "200": {
             "description": "Success"
+          },
+          "400": {
+            "description": "Id is required"
           },
           "401": {
             "description": "Não autorizado"

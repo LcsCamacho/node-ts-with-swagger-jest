@@ -17,6 +17,8 @@ export const read = async (req: Request, res: Response) => {
 };
 
 export const readById = async (req: Request, res: Response) => {
+  if (!req.params.id)
+    return res.status(400).send("id is required");
   try {
     res.status(200).send({
       id: req.params.id,

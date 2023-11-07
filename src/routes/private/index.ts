@@ -4,7 +4,7 @@ import { auth } from "../../middleware/auth";
 
 export const routerPrivate = Router();
 
-router.get("/", auth, read);
-router.post("/", auth, create);
-router.put("/", auth, update);
-router.delete("/", auth, remove);
+routerPrivate.get("/", auth, read);
+routerPrivate.post("/", auth, create);
+routerPrivate.put("/", auth, update);
+routerPrivate.delete("/", auth, remove);

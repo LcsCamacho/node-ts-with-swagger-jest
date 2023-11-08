@@ -10,9 +10,7 @@ describe("testando o create", () => {
     age: 18,
     password: "12345678",
   };
-  beforeEach(() => {
-    console.log("antes de cada teste");
-  });
+
   it("should create and receive ID", async () => {
     const response = await request("http://localhost:3777", {})
       .post("/home")
@@ -31,5 +29,12 @@ describe("testando o create", () => {
     expect(response.body).toEqual({
       message: "Unauthorized",
     });
+  });
+  it("should return a message error", async () => {
+    const response = await request("http://localhost:3777", {})
+      .post("/home")
+      .set("authorization", `Bearer ${jwtMock}`)
+      .send({});
+    expect(response.status).toBe(422);
   });
 });

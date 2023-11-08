@@ -1,12 +1,8 @@
 import request from "supertest";
-const jwtMock =
+export const jwtMock =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 describe("testando o read", () => {
-  beforeEach(() => {
-    console.log("antes de cada teste");
-  });
-
   it("should return a message unauthorized", async () => {
     const response = await request("http://localhost:3777", {})
       .get("/home")
@@ -36,27 +32,24 @@ describe("testando o read", () => {
     );
   });
   it("should return a item by id", async () => {
-    const id = 1;
     const response = await request("http://localhost:3777", {})
-      .get("/home/" + id)
+      .get("/home/1")
       .set("authorization", `Bearer ${jwtMock}`)
       .send();
     expect(response.status).toBe(200);
-    expect(response.body).toEqual([
-      {
-        id,
-        name: "example",
-        email: "lucas.camachofilho@gmail.com",
-        gender: "MASCULINO",
-        age: 25,
-      },
-    ]);
+    expect(response.body).toEqual({
+      id: "1",
+      name: "example",
+      email: "lucas.camachofilho@gmail.com",
+      gender: "MASCULINO",
+      age: 25,
+    });
   });
-  it("should return a erro id is required", async () => {
+  it("should return a erro not found", async () => {
     const response = await request("http://localhost:3777", {})
-      .get("/home/")
+      .get("/home/2")
       .set("authorization", `Bearer ${jwtMock}`)
       .send();
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(404);
   });
 });
